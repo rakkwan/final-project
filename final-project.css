@@ -1,0 +1,76 @@
+/*
+ * Name: Maxwell Lee, Jittima Goodrich
+ * Date: 12/3/2018
+ * File: final-project.css
+ * Description: css file for the final-project.html
+ */
+
+#leverDrop {
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: auto;
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    background-color: Peru;
+}
+
+#slots {
+    width: 400px;
+    height: 300px;
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    background-color: Wheat;
+}
+
+#slots p {
+    width: 30%;
+    height: 20%;
+    float: left;
+    border-style: solid;
+    border-width: 5px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    background-color: green;
+    display: block;
+}
+
+html {
+    background-color: Cornsilk;
+    padding: 0;
+    
+}
+
+h3 {
+    color: green;;
+}
+
+.red {
+    color: red;
+}
+
+button {
+    background-color: Peru;
+}
+
+
+#btn1 {
+    background-color: Cornsilk;
+    padding: 0;
+    border-style: solid;
+    border-color: red;    
+}
+
+#btn2 {
+    background-color: Aquamarine;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+tr:hover {background-color: #f5f5f5;}
