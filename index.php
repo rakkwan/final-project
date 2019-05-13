@@ -11,8 +11,10 @@ require_once('vendor/autoload.php');
 $f3 = Base::instance();
 
 //define a default route
-$f3->route('GET /', function () {
-    echo "<h1>Hello</h1>";
+$f3->route('GET /', function ()
+{
+    $view = new Template();
+    echo $view->render('views/search-page.html');
 });
 
 //Run fat-free
