@@ -61,14 +61,17 @@ function setForm()
 
             //print the name of an item to the div
             output.html(data.items.length+" results for: "+data.query + "<br>");
-            $("#outputTable").html("<tr><th>Image</th><th>Description</th><th>Price</th><th>Buy It</th></tr>");
+            $("#outputTable").html("<thead><tr><th>Image</th><th>Description</th>" +
+                "<th>Price</th><th>Buy It</th></tr></thead><tbody>");
             for (var i = 0; i < data.items.length; i++) {
                 items[i] = data.items[i].name;
                 prices[i] = data.items[i].salePrice;
                 $("#outputTable").append('<tr><td><img src="' + data.items[i].mediumImage + '"></td><td>' + data.items[i].name +
-                    '</td><td>$' + data.items[i].salePrice + '</td><td><button id="buy' + i + '" ' +
-                    'class="buying">Buy</button></td></tr>');
+                    '</td><td>$' + data.items[i].salePrice + '</td><td><button type="button" id="buy'+i+'" ' +
+                    'name="cartItem" data-toggle="modal" data-target="#exampleModal" ' +
+                    'value="buy'+i+'" class="btn btn-primary">Add to Cart</button></td></tr>');
             }
+            $("outputTable").append("</tbody>");
 
             // buy button section
             $(".buying").on("click", function () {
