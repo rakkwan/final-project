@@ -21,6 +21,13 @@ $f3->route('GET /', function()
     echo $view->render('views/home.html');
 });
 
+//define a loggin route
+$f3->route('GET|POST /loggin', function ()
+{
+    $view = new Template();
+    echo $view->render('views/loggin.html');
+});
+
 //define a search page route
 $f3->route('GET|POST /search', function ()
 {
