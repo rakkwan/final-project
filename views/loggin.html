@@ -12,32 +12,61 @@
     <title>Loggin</title>
 </head>
 <body>
-<div class="jumbotron">
-    <h1>Log In</h1>
-</div>
+
+<nav class="navbar navbar-light bg-light">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a id="text" class="nav-link" href="../">Walmart Online Shopping Site!</a>
+        </li>
+    </ul>
+</nav>
+
 
     <form>
-        <div class="row ml-4">
-            <div class="form-group col-md-3">
+        <div class="row ml-2">
+            <div class="col-sm-6">
+                <div class="jumbotron ml-2">
+                    <h1>Log In</h1>
+                </div>
 
-                <label>Username</label>
-                <input type="text" class="form-control" name="username" required>
+                <div class="row ml-2">
+                    <div class="col-sm-6">
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                </div>
+                <div class="row ml-2">
+                    <div class="col-sm-6">
+                        <label>Password</label>
+                        <input type="text" class="form-control" name="password" required>
+                    </div>
+                </div>
+
+                <div class="row ml-4 pt-4">
+                        <button type="submit" class="btn btn-primary btn-sm">Login</button>
+                </div>
             </div>
 
-        </div>
-        <div class="row ml-4">
-            <div class="form-group col-md-3">
+            <div class="col-sm-6">
+                <div class="jumbotron mr-4">
+                    <h1>Join Us</h1>
+                </div>
+                <p>Register with us to enjoy personalized services</p>
+                <ul>
+                    <li>Save multiple shipping addresses</li>
+                    <li>Checkout preferences </li>
+                    <li>Check online order status</li>
+                </ul>
 
-                <label>Password</label>
-                <input type="text" class="form-control" name="password" required>
+                <div class="row ml-2 pt-4">
+                    <button type="submit" class="btn btn-primary btn-sm">Register</button>
+                </div>
+
             </div>
+
+
         </div>
 
-        <div class="row ml-4">
-            <div class="form-group col-md-3">
-                <button type="submit" class="btn btn-primary btn-sm">Login</button>
-            </div>
-        </div>
     </form>
 
 
