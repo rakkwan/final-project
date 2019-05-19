@@ -24,14 +24,19 @@ $("#product").on("keydown", function(event) {
     }
 });
 
+var prices = [];
+var items = [];
+var images = [];
 function setForm()
 {
     if(document.readyState === "complete") {
         //walmart buying section
         // create an empty array called prices
-        var prices = [];
+        prices = [];
         // create an empty array called items
-        var items = [];
+        items = [];
+        // create an empty array for pictures
+        images = [];
 
         var output = $("#output");
         var product = $("#product").val();
@@ -66,10 +71,11 @@ function setForm()
             for (var i = 0; i < data.items.length; i++) {
                 items[i] = data.items[i].name;
                 prices[i] = data.items[i].salePrice;
+                images[i] = data.items[i].mediumImage;
                 $("#outputTable").append('<tr><td><img src="' + data.items[i].mediumImage + '"></td><td>' + data.items[i].name +
                     '</td><td>$' + data.items[i].salePrice + '</td><td><button type="button" id="buy'+i+'" ' +
-                    'name="cartItem" data-toggle="modal" data-target="#exampleModal" ' +
-                    'value="buy'+i+'" class="btn btn-primary">Add to Cart</button></td></tr>');
+                    'name="cartItem" ' +
+                    'value="buy'+i+'" class="buying btn btn-primary">Add to Cart</button></td></tr>');
             }
             $("outputTable").append("</tbody>");
 
@@ -77,10 +83,13 @@ function setForm()
             $(".buying").on("click", function () {
                 var index = $(this).attr("id").substring(3, 4);
 
-                // list of items in your cart
-                $("ol").append("<li>" + items[index] + "</li>");
+                var modal = $('#modal');
+                modal.html('<img src="'+images[index]+'" alt="product">');
+                modal.append('<p>Name: '+items[index]+'</p>');
+                modal.append('<p>Price: $'+prices[index]+'</p>');
+
+                $('#exampleModal').modal();
             });
         });
     }
 }
-
