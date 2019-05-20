@@ -64,6 +64,8 @@ function setForm()
             // takes a JSON string and transforms it into a JavaScript object
             data = JSON.parse(data);
 
+           // $("#product").autocomplete(data);
+
             //print the name of an item to the div
             output.html(data.items.length+" results for: "+data.query + "<br>");
             $("#outputTable").html("<thead><tr><th>Image</th><th>Description</th>" +
