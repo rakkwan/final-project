@@ -18,6 +18,8 @@ $f3 = Base::instance();
 //define a default route
 $f3->route('GET /', function()
 {
+    $_SESSION['cartSize'] = 0;
+
     $view = new Template();
     echo $view->render('views/home.html');
 });
@@ -56,10 +58,15 @@ $f3->route('GET|POST /loggin', function ($f3)
 //define a search page route
 $f3->route('GET|POST /search', function ($f3)
 {
+    $image = $_POST['image'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+
     if(!empty($_POST))
     {
-        $cartItem = new CartItem();
-        $f3->reroute('/summary');
+        $cartItem = new CartItem($image, $name, $price);
+        $_SESSION['cart'][] = $cartItem;
+        $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
     }
 
     $view = new Template();

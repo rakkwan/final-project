@@ -90,6 +90,10 @@ function setForm()
                 modal.append('<p>Name: '+items[index]+'</p>');
                 modal.append('<p>Price: $'+prices[index]+'</p>');
 
+                modal.append('<input hidden type="text" name="image" value="'+images[index]+'">');
+                modal.append('<input hidden type="text" name="name" value="'+items[index]+'">');
+                modal.append('<input hidden type="text" name="price" value="'+prices[index]+'">');
+
                 $('#exampleModal').modal();
             });
         });
