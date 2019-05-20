@@ -5,5 +5,25 @@
 }
 img {
     margin: auto;
-    padding: 10px;
+    padding: 30px;
+}
+
+#sofa {
+    width: 650px;
+    height: 350px;
+}
+
+#shoes {
+    width: 400px;
+    height: 350px;
+}
+
+#adidas {
+    width: 650px;
+    height: 350px;
+}
+
+#coffee {
+    width: 650px;
+    height: 350px;
 }
