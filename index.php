@@ -73,6 +73,11 @@ $f3->route('GET|POST /search', function ($f3)
     echo $view->render('views/search-page.html');
 });
 
+$f3->route('GET|POST /cart', function ($f3) {
+    $view = new Template();
+    echo $view->render('views/cart.html');
+});
+
 //Run fat-free
 $f3->run();
 ?>
