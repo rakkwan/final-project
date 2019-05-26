@@ -77,13 +77,13 @@ class Database
 
     function register($user)
     {
-        if (isset($this->dbh)) {
+        if (isset($this->_dbh)) {
             // prepare sql statement
             $sql = "INSERT INTO users (fname, lname, address, email, password)
                     VALUES (:fname, :lname, :address, :email, :password)";
 
             // save prepared statement
-            $statement = $this->dbh->prepare($sql);
+            $statement = $this->_dbh->prepare($sql);
 
             // assign values
             $fname = $user->getFname();
