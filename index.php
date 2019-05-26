@@ -1,5 +1,6 @@
 <?php
 
+
 $user = $_SERVER['USER'];
 require "/home/$user/config-project.php";
 require_once('vendor/autoload.php');
@@ -7,7 +8,7 @@ require_once('vendor/autoload.php');
 session_start();
 
 //TUrn on error reporting
-ini_set('display_errors', true);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Require autoload file
@@ -16,6 +17,19 @@ error_reporting(E_ALL);
 //Create an instance of the Base class
 $f3 = Base::instance();
 
+
+
+// define a default route
+$f3->route('GET /profile', function($f3)
+{
+    $db = new Database();
+    $db->connect();
+    $users = $db->getUsers();
+    //print_r($users);
+    $f3->set('users', $users);
+    $template = new Template();
+    echo $template->render('views/profile.html');
+});
 
 //define a default route
 $f3->route('GET /', function()
