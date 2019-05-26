@@ -1,5 +1,7 @@
 <?php
 
+$user = $_SERVER['USER'];
+require "/home/$user/config-project.php";
 require_once('vendor/autoload.php');
 
 session_start();
