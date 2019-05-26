@@ -86,6 +86,21 @@ class Database
             $statement = $this->dbh->prepare($sql);
 
             // assign values
+            $fname = $user->getFname();
+            $lname = $user->getLname();
+            $address = $user->getAddress();
+            $email = $user->getEmail();
+            $password = $user->getPassword();
+
+            // bind params
+            $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+            $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
+            $statement->bindParam(':address', $address, PDO::PARAM_STR);
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            $statement->bindParam(':password', $password, PDO::PARAM_STR);
+
+            // execute insert into users
+            $statement->execute();
 
         }
     }
