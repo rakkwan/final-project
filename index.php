@@ -17,19 +17,8 @@ error_reporting(E_ALL);
 //Create an instance of the Base class
 $f3 = Base::instance();
 
+$db = new Database();
 
-
-// define a default route
-$f3->route('GET /profile', function($f3)
-{
-    $db = new Database();
-    $db->connect();
-    $users = $db->getUsers();
-    //print_r($users);
-    $f3->set('users', $users);
-    $template = new Template();
-    echo $template->render('views/profile.html');
-});
 
 //define a default route
 $f3->route('GET /', function()
@@ -89,6 +78,20 @@ $f3->route('GET|POST /search', function ($f3)
     echo $view->render('views/search-page.html');
 });
 
+
+// define a default route
+$f3->route('GET|POST /profile', function($f3)
+{
+    $db = new Database();
+    $db->connect();
+    $users = $db->getUsers();
+    //print_r($users);
+    $f3->set('users', $users);
+    $template = new Template();
+    echo $template->render('views/profile.html');
+});
+
+
 $f3->route('GET|POST /cart', function ($f3) {
     $view = new Template();
     echo $view->render('views/cart.html');
@@ -96,4 +99,3 @@ $f3->route('GET|POST /cart', function ($f3) {
 
 //Run fat-free
 $f3->run();
-?>

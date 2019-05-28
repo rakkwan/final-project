@@ -30,8 +30,8 @@ CREATE TABLE orders
 );
  */
 
-
-require '/home/jgoodric/config-project.php';
+$user = $_SERVER['USER'];
+require '/home/$user/config-project.php';
 
 class Database
 {
@@ -47,7 +47,7 @@ class Database
         try {
             // Instantiate a db object
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-            //echo "Connected!!!";
+            echo "Connected!";
             return $this->_dbh;
         } catch (PDOException $e) {
             echo $e->getMessage();
