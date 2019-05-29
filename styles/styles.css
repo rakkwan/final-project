@@ -29,11 +29,11 @@ img {
 }
 
 body {
-    background: #aaaaaa;
+    background: lightgrey;
 }
 
 a {
-    color: white;
+    color: darkslategrey;
 }
 
 h1 {
