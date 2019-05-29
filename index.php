@@ -32,6 +32,7 @@ $f3->route('GET /', function()
 //define a register route
 $f3->route('GET|POST /register', function($f3)
 {
+    //$f3->reroute('views/register.html');
     $view = new Template();
     echo $view->render('views/register.html');
 });
