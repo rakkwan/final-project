@@ -30,8 +30,8 @@ CREATE TABLE orders
 );
  */
 
-//$user = $_SERVER['USER'];
-//require '/home/$user/config-project.php';
+$user = $_SERVER['USER'];
+require "/home/$user/config-student.php";
 
 class Database
 {
@@ -47,7 +47,6 @@ class Database
         try {
             // Instantiate a db object
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-            echo "Connected!";
             return $this->_dbh;
         } catch (PDOException $e) {
             //echo $e->getMessage();

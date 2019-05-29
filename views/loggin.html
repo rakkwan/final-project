@@ -16,74 +16,78 @@
 <h1>Walmart Shopping Online</h1>
 
 <div class="jumbotron">
-<nav class="navbar navbar-light bg-light">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a id="text" class="nav-link" href="../final-project">Welcome</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="loggin">Log in</a>
-                <a class="dropdown-item" href="register">Register</a>
-                <a class="dropdown-item" href="search">Search</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Log out</a>
-            </div>
-        </li>
-    </ul>
-</nav>
+    <nav class="navbar navbar-light bg-light">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a id="text" class="nav-link" href="../final-project">Welcome</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="loggin">Log in</a>
+                    <a class="dropdown-item" href="register">Register</a>
+                    <a class="dropdown-item" href="search">Search</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Log out</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 <div class="jumbotron">
-<div class="container">
-<div class="row ml-2">
-    <div class="col-sm-6">
-    <form action="#" method="post">
+    <div class="container">
+        <div class="row ml-2">
+            <div class="col-sm-6">
 
-                <div class="jumbotron ml-2">
-                    <h1>Log In</h1>
-                </div>
+                <form method="post">
+                    <input type="text" name="redirect" value="login" hidden>
 
-                <div class="row ml-2">
-                    <div class="col-sm-6">
-                        <label>Username</label>
-                        <input type="text" class="form-control" name="username">
+                    <div class="jumbotron ml-2">
+                        <h1>Log In</h1>
                     </div>
-                </div>
-                <div class="row ml-2">
-                    <div class="col-sm-6">
-                        <label>Password</label>
-                        <input type="text" class="form-control" name="password">
-                    </div>
-                </div>
 
-                <div class="row ml-4 pt-4">
+                    <div class="row ml-2">
+                        <div class="col-sm-6">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                    </div>
+                    <div class="row ml-2">
+                        <div class="col-sm-6">
+                            <label>Password</label>
+                            <input type="text" class="form-control" name="password">
+                        </div>
+                    </div>
+
+                    <div class="row ml-4 pt-4">
                         <button type="submit" href="profile" class="btn btn-primary btn-sm">Login</button>
-                </div>
-    </form>
-    </div>
+                    </div>
+                </form>
+            </div>
 
-        <div class="col-sm-6">
-            <form action="#" method="post">
-                <div class="jumbotron mr-4">
-                    <h1>Join Us</h1>
-                </div>
-                <p>Register with us to enjoy personalized services</p>
-                <ul>
-                    <li>Save multiple shipping addresses</li>
-                    <li>Checkout preferences </li>
-                    <li>Check online order status</li>
-                </ul>
+            <div class="col-sm-6">
+                <form method="post">
+                    <input type="text" name="redirect" value="register" hidden>
 
-                <div class="row ml-2 pt-4">
-                    <button type="submit" href="register" class="btn btn-primary btn-sm">Register</button>
-                </div>
-            </form>
+                    <div class="jumbotron mr-4">
+                        <h1>Join Us</h1>
+                    </div>
+                    <p>Register with us to enjoy personalized services</p>
+                    <ul>
+                        <li>Save multiple shipping addresses</li>
+                        <li>Checkout preferences </li>
+                        <li>Check online order status</li>
+                    </ul>
+
+                    <div class="row ml-2 pt-4">
+                        <button type="submit" href="register" class="btn btn-primary btn-sm">Register</button>
+                    </div>
+                </form>
+            </div>
         </div>
-</div>
-</div>
+    </div>
 </div>
 <!-- Footer -->
 <footer class="page-footer font-small blue">

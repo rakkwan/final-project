@@ -1,8 +1,6 @@
 <?php
 
-
-//$user = $_SERVER['USER'];
-//require "/home/$user/config-project.php";
+//Require autoload file
 require_once('vendor/autoload.php');
 
 session_start();
@@ -11,14 +9,10 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//Require autoload file
-
-
 //Create an instance of the Base class
 $f3 = Base::instance();
 
 $db = new Database();
-
 
 //define a default route
 $f3->route('GET /', function()
@@ -42,14 +36,21 @@ $f3->route('GET|POST /loggin', function ($f3)
 {
     if(!empty($_POST))
     {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        if($_POST['redirect'] == "login")
+        {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
 
-        $f3->set('username', $username);
-        $f3->set('password', $password);
+            $f3->set('username', $username);
+            $f3->set('password', $password);
 
 
-        $f3->reroute('views/profile.html');
+            $f3->reroute('/profile');
+        }
+        if($_POST['redirect'] == "register")
+        {
+            $f3->reroute('/register');
+        }
     }
     $view = new Template();
     echo $view->render('views/loggin.html');
