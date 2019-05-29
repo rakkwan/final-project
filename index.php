@@ -17,6 +17,7 @@ $db = new Database();
 //define a default route
 $f3->route('GET /', function()
 {
+    $_SESSION['cart'] = [];
     $_SESSION['cartSize'] = 0;
 
     $view = new Template();
@@ -67,7 +68,7 @@ $f3->route('GET|POST /search', function ($f3)
     if(!empty($_POST))
     {
         $cartItem = new CartItem($image, $name, $price);
-        $_SESSION['cart'][] = $cartItem;
+        array_push($_SESSION['cart'], $cartItem);
         $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
     }
 
@@ -89,7 +90,16 @@ $f3->route('GET|POST /profile', function($f3)
 });
 
 
-$f3->route('GET|POST /cart', function ($f3) {
+$f3->route('GET|POST /cart', function ($f3)
+{
+    $f3->set('cart', $_SESSION['cart']);
+    $cartTotal = 0;
+    foreach ($_SESSION['cart'] as $item)
+    {
+        $cartTotal += $item->getPrice();
+    }
+    $f3->set('cartTotal', $cartTotal);
+
     $view = new Template();
     echo $view->render('views/cart.html');
 });

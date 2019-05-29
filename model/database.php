@@ -103,4 +103,9 @@ class Database
 
         }
     }
+
+    function insertOrder()
+    {
+        //todo: after clicking confirm on cart summary insert order into table with user id as foreign key.
+    }
 }
