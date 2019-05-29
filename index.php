@@ -1,8 +1,8 @@
 <?php
 
 
-$user = $_SERVER['USER'];
-require "/home/$user/config-project.php";
+//$user = $_SERVER['USER'];
+//require "/home/$user/config-project.php";
 require_once('vendor/autoload.php');
 
 session_start();
@@ -47,11 +47,6 @@ $f3->route('GET|POST /loggin', function ($f3)
         $f3->set('username', $username);
         $f3->set('password', $password);
 
-
-        if(valid())
-        {
-
-        }
 
         $f3->reroute('views/profile.html');
     }

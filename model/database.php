@@ -30,8 +30,8 @@ CREATE TABLE orders
 );
  */
 
-$user = $_SERVER['USER'];
-require '/home/$user/config-project.php';
+//$user = $_SERVER['USER'];
+//require '/home/$user/config-project.php';
 
 class Database
 {
@@ -50,7 +50,7 @@ class Database
             echo "Connected!";
             return $this->_dbh;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            //echo $e->getMessage();
         }
     }
 

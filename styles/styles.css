@@ -1,5 +1,5 @@
 .container {
-    background: #aaaaaa;
+    background: whitesmoke;
     margin: auto;
     padding: 30px;
 }
@@ -26,4 +26,17 @@ img {
 #coffee {
     width: 650px;
     height: 350px;
+}
+
+body {
+    background: #aaaaaa;
+}
+
+a {
+    color: white;
+}
+
+h1 {
+    color: darkslategrey;
+    font-family: Serif;
 }
