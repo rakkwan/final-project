@@ -8,8 +8,8 @@ $("#cartSubmit").on("click", function() {
     let address = $('#address').val();
     let shipping = $("input:radio[name='shipping']:checked").val();
 
-    $.post('model/cart-submit.php', {address: address, shipping: shipping}, function(result) {
-        $('#modal').html(result);
+    $.post('model/cart-submit.php', {cost: cost, address: address, shipping: shipping}, function(result) {
+        $('#modal').append(result);
     });
 });
 

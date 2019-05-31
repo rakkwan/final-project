@@ -64,7 +64,7 @@
                 </table>
 
                 <h2>Price total: ${{@cartTotal}}</h2>
-                <h3>Tax(10%): ${{@cartTotal*0.1}}</h3>
+                <h3>Tax(10%): ${{@tax}}</h3>
 
                 <div>
                     <button class="btn btn-primary float-right" id="confirmOrderBtn">Confirm Shipping</button>
@@ -123,9 +123,9 @@
                             Overnight Shipping: $20 (1) Business Day</label>
                     </div>
 
-                    <input hidden id="totalCost" value="{{@cartTotal*1.1}}">
-                    <input hidden id="costWShipping" value="{{@cartTotal*1.1}}">
-                    <p id="costDisplay">Price Total: ${{@cartTotal*1.1}}</p>
+                    <input hidden id="totalCost" value="{{@cartTotal+@tax}}">
+                    <input hidden id="costWShipping" value="{{@cartTotal+@tax}}">
+                    <p id="costDisplay">Price Total: ${{@cartTotal+@tax}}</p>
 
                 </div>
                 <div class="modal-footer">

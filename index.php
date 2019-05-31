@@ -99,6 +99,8 @@ $f3->route('GET|POST /cart', function ($f3)
         $cartTotal += $item->getPrice();
     }
     $f3->set('cartTotal', $cartTotal);
+    $tax = number_format($cartTotal*0.1, 2, '.', '');
+    $f3->set('tax', $tax);
 
     $view = new Template();
     echo $view->render('views/cart.html');
