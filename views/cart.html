@@ -63,10 +63,11 @@
                     </tbody>
                 </table>
 
-                <h2 class="float-right">Price total: {{@cartTotal}}</h2>
+                <h2>Price total: ${{@cartTotal}}</h2>
+                <h3>Tax(10%): ${{@cartTotal*0.1}}</h3>
 
                 <div>
-                    <button class="btn btn-primary" id="confirmOrderBtn">Confirm Shipping</button>
+                    <button class="btn btn-primary float-right" id="confirmOrderBtn">Confirm Shipping</button>
                 </div>
             </div>
         </div>
@@ -106,7 +107,7 @@
 
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="shipping" value="standard">
+                            <input checked class="form-check-input" type="radio" name="shipping" value="standard">
                         Standard Shipping: Free (5-10) Business Days</label>
                     </div>
 
@@ -118,14 +119,18 @@
 
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="shipping" value="Overnight">
+                            <input class="form-check-input" type="radio" name="shipping" value="overnight">
                             Overnight Shipping: $20 (1) Business Day</label>
                     </div>
+
+                    <input hidden id="totalCost" value="{{@cartTotal*1.1}}">
+                    <input hidden id="costWShipping" value="{{@cartTotal*1.1}}">
+                    <p id="costDisplay">Price Total: ${{@cartTotal*1.1}}</p>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Confirm</button>
+                    <button id="cartSubmit" type="button" class="btn btn-success">Confirm</button>
                 </div>
             </form>
         </div>

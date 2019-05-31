@@ -107,5 +107,17 @@ class Database
     function insertOrder()
     {
         //todo: after clicking confirm on cart summary insert order into table with user id as foreign key.
+        global $f3;
+        $userEmail = $f3->get('username');
+        $sql = "SELECT user_id FROM users WHERE email = :email";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':email', $userEmail, PDO::PARAM_STR);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_NUM);
+        $email = $row[0];
+
+        $sql = "INSERT INTO orders(product, shipping, address, user_id) 
+        VALUES (:product, :shipping, :address, :user_id)";
+        $statement = $this->_dbh->prepare($sql);
     }
 }
