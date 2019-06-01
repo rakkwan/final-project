@@ -125,6 +125,8 @@
 
                     <input hidden id="totalCost" value="{{@cartTotal+@tax}}">
                     <input hidden id="costWShipping" value="{{@cartTotal+@tax}}">
+                    <input hidden id="userID" value="{{$_SESSION['userID']}}">
+                    <input hidden id="cartForJS" value="{{@cart}}">
                     <p id="costDisplay">Price Total: ${{@cartTotal+@tax}}</p>
 
                 </div>

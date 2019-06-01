@@ -28,6 +28,15 @@ $f3->route('GET /', function()
 $f3->route('GET|POST /register', function($f3)
 {
     //$f3->reroute('views/register.html');
+    if(!empty($_POST))
+    {
+        $user = new User($_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['email'], $_POST['pass']);
+        global $db;
+        $db->register($user);
+        //echo 'User ID: '.$f3->get('userID');
+        $_SESSION['userID'] = $f3->get('userID');
+    }
+
     $view = new Template();
     echo $view->render('views/register.html');
 });

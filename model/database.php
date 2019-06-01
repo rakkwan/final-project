@@ -47,7 +47,7 @@ class Database
         try {
             // Instantiate a db object
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-            return $this->_dbh;
+            $this->_dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             //echo $e->getMessage();
         }
@@ -76,48 +76,46 @@ class Database
 
     function register($user)
     {
-        if (isset($this->_dbh)) {
-            // prepare sql statement
-            $sql = "INSERT INTO users (fname, lname, address, email, password)
-                    VALUES (:fname, :lname, :address, :email, :password)";
+        // prepare sql statement
+        $sql = "INSERT INTO users(fname, lname, address, email, password)
+        VALUES (:fname, :lname, :address, :email, :password)";
 
-            // save prepared statement
-            $statement = $this->_dbh->prepare($sql);
+        // save prepared statement
+        $statement = $this->_dbh->prepare($sql);
 
-            // assign values
-            $fname = $user->getFname();
-            $lname = $user->getLname();
-            $address = $user->getAddress();
-            $email = $user->getEmail();
-            $password = $user->getPassword();
+        // assign values
+        $fname = $user->getFname();
+        $lname = $user->getLname();
+        $address = $user->getAddress();
+        $email = $user->getEmail();
+        $password = $user->getPassword();
 
-            // bind params
-            $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
-            $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
-            $statement->bindParam(':address', $address, PDO::PARAM_STR);
-            $statement->bindParam(':email', $email, PDO::PARAM_STR);
-            $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        // bind params
+        $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
+        $statement->bindParam(':address', $address, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
-            // execute insert into users
-            $statement->execute();
+        // execute insert into users
+        $statement->execute();
 
-        }
+        global $f3;
+        $lastID = $this->_dbh->lastInsertId();
+        $f3->set('userID', $lastID);
     }
 
-    function insertOrder()
+    function insertOrder($userID, $product, $shipping, $address)
     {
-        //todo: after clicking confirm on cart summary insert order into table with user id as foreign key.
-        global $f3;
-        $userEmail = $f3->get('username');
-        $sql = "SELECT user_id FROM users WHERE email = :email";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':email', $userEmail, PDO::PARAM_STR);
-        $statement->execute();
-        $row = $statement->fetchAll(PDO::FETCH_NUM);
-        $email = $row[0];
-
         $sql = "INSERT INTO orders(product, shipping, address, user_id) 
         VALUES (:product, :shipping, :address, :user_id)";
         $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam(':product', $product, PDO::PARAM_STR);
+        $statement->bindParam(':shipping', $shipping, PDO::PARAM_STR);
+        $statement->bindParam(':address', $address, PDO::PARAM_STR);
+        $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
+
+        $statement->execute();
     }
 }

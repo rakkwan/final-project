@@ -7,9 +7,13 @@ $("#cartSubmit").on("click", function() {
     let cost = $('#costWShipping').val();
     let address = $('#address').val();
     let shipping = $("input:radio[name='shipping']:checked").val();
+    let userID = $('#userID').val();
 
-    $.post('model/cart-submit.php', {cost: cost, address: address, shipping: shipping}, function(result) {
-        $('#modal').append(result);
+    $.post(
+        'model/cart-submit.php',
+        {cost: cost, address: address, shipping: shipping, userID: userID},
+        function(result) {
+            $('#modal').append(result);
     });
 });
 
@@ -23,17 +27,20 @@ $("input:radio[name='shipping']").on('click', function() {
 
     if(activeRadio.val() === 'standard')
     {
-        display.append(costFloat.toFixed(2));
-        totalCost.val(cost);
+        let costWTax = costFloat.toFixed(2);
+        display.append(costWTax);
+        totalCost.val(costWTax);
     }
     else if(activeRadio.val() === 'expedited')
     {
-        display.append((costFloat+10).toFixed(2));
-        totalCost.val(cost+10);
+        let costWTax = (costFloat+10).toFixed(2);
+        display.append(costWTax);
+        totalCost.val(costWTax);
     }
     else if(activeRadio.val() === 'overnight')
     {
-        display.append((costFloat+20).toFixed(2));
-        totalCost.val(cost+20);
+        let costWTax = (costFloat+20).toFixed(2);
+        display.append(costWTax);
+        totalCost.val(costWTax);
     }
 });
