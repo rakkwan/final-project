@@ -13,7 +13,9 @@ $("#cartSubmit").on("click", function() {
         'model/cart-submit.php',
         {cost: cost, address: address, shipping: shipping, userID: userID},
         function(result) {
-            $('#modal').append(result);
+            $('#cartModal').modal('hide');
+            $('#confirmModal').modal();
+            $('#modal2').html(result);
     });
 });
 
