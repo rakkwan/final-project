@@ -52,7 +52,133 @@
     <!-- Collapsible content -->
 </nav>
 <!-- Navbar -->
-<p>Name: {{ @users['fname'] }} {{ @users['lname'] }}</p>
+
+
+<p>Hello, {{ @users['fname'] }} {{ @users['lname'] }}</p>
+<h2>Your Account</h2>
+
+<!-- Card group -->
+<div class="card-group">
+
+    <!-- Card -->
+    <div class="card mb-4">
+
+        <!-- Card image -->
+        <div class="view overlay">
+            <img class="card-img-top" src="">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title">Your Orders</h4>
+            <!-- Text -->
+            <p class="card-text">Track, return, or buy again</p>
+            <hr>
+            <p class="card-text">Orders:</p>
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <button type="button" class="btn-sm btn-outline-info waves-effect">view</button>
+
+        </div>
+        <!-- Card content -->
+
+    </div>
+    <!-- Card -->
+
+    <!-- Card -->
+    <div class="card mb-4">
+
+        <!-- Card image -->
+        <div class="view overlay">
+            <img class="card-img-top" src="">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body">
+            <!-- Title -->
+            <h4 class="card-title">Login & security</h4>
+            <!-- Text -->
+            <p class="card-text">Edit login, name, and mobile number</p>
+            <hr>
+            <p class="card-text">Your Name: {{ @users['fname'] }} {{ @users['lname'] }}</p>
+            <p class="card-text">Your Username: {{ @users['email'] }}</p>
+            <p class="card-text">Your Password:</p>
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <button type="button" class="btn-sm btn-outline-info waves-effect">edit</button>
+
+        </div>
+        <!-- Card content -->
+
+    </div>
+    <!-- Card -->
+
+    <!-- Card -->
+    <div class="card mb-4">
+
+        <!-- Card image -->
+        <div class="view overlay">
+            <img class="card-img-top" src="">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title">Address</h4>
+            <!-- Text -->
+            <p class="card-text">Edit & add new addresses</p>
+            <hr>
+            <p class="card-text">Your Address: {{ @users['address'] }}</p>
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <button type="button" class="btn-sm btn-outline-info waves-effect">edit</button>
+
+        </div>
+        <!-- Card content -->
+
+    </div>
+    <!-- Card -->
+
+    <!-- Card -->
+    <div class="card mb-4">
+
+        <!-- Card image -->
+        <div class="view overlay">
+            <img class="card-img-top" src="">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title">Orders History</h4>
+            <!-- Text -->
+            <p class="card-text">Buy it again</p>
+            <hr>
+            <p class="card-text">Orders History:</p>
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <button type="button" class="btn-sm btn-outline-info waves-effect">view</button>
+
+        </div>
+        <!-- Card content -->
+
+    </div>
+    <!-- Card -->
+
+</div>
+<!-- Card group -->
 
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

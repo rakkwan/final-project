@@ -89,10 +89,10 @@ $f3->route('GET|POST /search', function ($f3)
 });
 
 
-// define a default route
+// define a profile route
 $f3->route('GET|POST /profile', function($f3)
 {
-    echo 'USERID: '.$_SESSION['userID'];
+    //echo 'USERID: '.$_SESSION['userID'];
     global $db;
 
     $users = $db->getUsers($_SESSION['email']);
