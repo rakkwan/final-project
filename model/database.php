@@ -53,25 +53,44 @@ class Database
         }
     }
 
-    function getUsers()
+    function getUsers($email)
     {
         // 1. Define the query
-        $sql = "SELECT * FROM users
-                ORDER BY last, first";
+        $sql = 'SELECT fname, lname, address FROM users WHERE email=:email';
 
         // 2 Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         // 3. Bind the parameters
         //$statement->bindParam(':address', $address, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
 
         // 4. Execute the statement
         $statement->execute();
 
         // 5. Return the results
         $result = $statement->fetch(PDO::FETCH_ASSOC);
+
         //print_r($result);
         return $result;
+    }
+
+    function login($email, $password)
+    {
+        $sql = "SELECT user_id FROM users WHERE email = :email AND password = :password";
+
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+        global $f3;
+        $f3->set('userID', $row['user_id']);
+        return $row;
     }
 
     function register($user)

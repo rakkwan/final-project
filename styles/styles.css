@@ -1,5 +1,4 @@
 .container {
-    background: whitesmoke;
     margin: auto;
     padding: 30px;
 }
@@ -28,15 +27,10 @@ img {
     height: 350px;
 }
 
-body {
-    background: lightgrey;
-}
-
-a {
-    color: darkslategrey;
-}
-
 h1 {
-    color: darkslategrey;
     font-family: Serif;
+}
+
+body {
+    margin-top: 100px;
 }

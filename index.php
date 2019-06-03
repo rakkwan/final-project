@@ -27,14 +27,15 @@ $f3->route('GET /', function()
 //define a register route
 $f3->route('GET|POST /register', function($f3)
 {
-    //$f3->reroute('views/register.html');
     if(!empty($_POST))
     {
         $user = new User($_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['email'], $_POST['pass']);
+        $_SESSION['email'] = $_POST['email'];
         global $db;
         $db->register($user);
-        //echo 'User ID: '.$f3->get('userID');
         $_SESSION['userID'] = $f3->get('userID');
+
+        $f3->reroute('/thankyou');
     }
 
     $view = new Template();
@@ -48,18 +49,20 @@ $f3->route('GET|POST /loggin', function ($f3)
     {
         if($_POST['redirect'] == "login")
         {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            $f3->set('username', $username);
-            $f3->set('password', $password);
-
-
-            $f3->reroute('/profile');
+            global $db;
+            $user = $db->login($_POST['username'], $_POST['password']);
+            if(!empty($user['user_id']))
+            {
+                $_SESSION['userID'] = $f3->get('userID');
+                $_SESSION['email'] = $_POST['username'];
+                $f3->reroute('/profile');
+            }
+            $f3->set('errors', 'No matching user');
         }
         if($_POST['redirect'] == "register")
         {
             $f3->reroute('/register');
+
         }
     }
     $view = new Template();
@@ -89,13 +92,25 @@ $f3->route('GET|POST /search', function ($f3)
 // define a default route
 $f3->route('GET|POST /profile', function($f3)
 {
-    $db = new Database();
-    $db->connect();
-    $users = $db->getUsers();
-    //print_r($users);
+    echo 'USERID: '.$_SESSION['userID'];
+    global $db;
+
+    $users = $db->getUsers($_SESSION['email']);
+
     $f3->set('users', $users);
+
     $template = new Template();
     echo $template->render('views/profile.html');
+});
+
+// define a default route
+$f3->route('GET|POST /thankyou', function($f3)
+{
+    global $db;
+    $user = $db->getUsers($_SESSION['email']);
+    $f3->set('user', $user);
+    $template = new Template();
+    echo $template->render('views/thankyou.html');
 });
 
 
