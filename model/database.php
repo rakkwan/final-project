@@ -28,6 +28,8 @@ CREATE TABLE orders
 	PRIMARY KEY(order_id),
 	FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+ALTER TABLE orders
+ADD description TEXT;
  */
 
 $user = $_SERVER['USER'];
@@ -108,6 +110,7 @@ class Database
         $address = $user->getAddress();
         $email = $user->getEmail();
         $password = $user->getPassword();
+        $password = password_hash($password, 1);
 
         // bind params
         $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
