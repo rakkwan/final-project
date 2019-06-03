@@ -53,15 +53,18 @@
 </nav>
 <!-- Navbar -->
 
-<div class="jumbotron">
-    <h2 class="display-4 text-center">Thank you!</h2>
-    <p class="lead text-center">{{ @user['fname'] }} {{ @user['lname'] }} for registration!</p>
-    <p class="lead text-center">Your confirmation number is {{$_SESSION['userID']}}</p>
-    <hr class="my-4">
-    <p></p>
-    <a type="button" class="btn btn-info waves-effect" href="loggin">Log in</a>
-    <a type="button" class="btn btn-outline-info waves-effect" href="search">Search</a>
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="display-4 text-center">Thank you!</h2>
+        <p class="lead text-center">{{ @user['fname'] }} {{ @user['lname'] }} for registration!</p>
+        <p class="lead text-center">Your confirmation number is {{$_SESSION['userID']}}</p>
+        <hr class="my-4">
+        <p></p>
+        <a type="button" class="btn btn-info waves-effect" href="loggin">Log in</a>
+        <a type="button" class="btn btn-outline-info waves-effect" href="search">Search</a>
+    </div>
 </div>
+
 
 
 <include href="views/includes/footer.html"/>
