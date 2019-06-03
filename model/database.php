@@ -110,7 +110,7 @@ class Database
         $address = $user->getAddress();
         $email = $user->getEmail();
         $password = $user->getPassword();
-        $password = password_hash($password, 1);
+        //$password = password_hash($password, 1);
 
         // bind params
         $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
