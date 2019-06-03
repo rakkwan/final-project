@@ -108,7 +108,7 @@
             <p class="card-text">Edit login, name, and mobile number</p>
             <hr>
             <p class="card-text">Your Name: {{ @users['fname'] }} {{ @users['lname'] }}</p>
-            <p class="card-text">Your Username: {{ @users['email'] }}</p>
+            <p class="card-text">Your Username: {{$_SESSION['email']}}</p>
             <p class="card-text">Your Password:</p>
             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
             <button type="button" class="btn-sm btn-outline-info waves-effect">edit</button>

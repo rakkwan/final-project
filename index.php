@@ -106,6 +106,7 @@ $f3->route('GET|POST /profile', function($f3)
 // define a default route
 $f3->route('GET|POST /thankyou', function($f3)
 {
+    //echo 'USERID: '.$_SESSION['userID'];
     global $db;
     $user = $db->getUsers($_SESSION['email']);
     $f3->set('user', $user);
