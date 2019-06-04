@@ -25,8 +25,11 @@ $db = new Database();
 //define a default route
 $f3->route('GET /', function()
 {
-    $_SESSION['cart'] = [];
-    $_SESSION['cartSize'] = 0;
+    if(!isset($_SESSION['cart']))
+    {
+        $_SESSION['cart'] = [];
+        $_SESSION['cartSize'] = 0;
+    }
 
     $view = new Template();
     echo $view->render('views/home.html');
@@ -107,9 +110,17 @@ $f3->route('GET|POST /search', function ($f3)
 
     if(!empty($_POST))
     {
-        $cartItem = new CartItem($image, $name, $price);
-        array_push($_SESSION['cart'], $cartItem);
-        $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
+        if($_POST['cartDelete'] == 'delete')
+        {
+            $_SESSION['cartSize'] = 0;
+            $_SESSION['cart'] = [];
+        }
+        else
+        {
+            $cartItem = new CartItem($image, $name, $price);
+            array_push($_SESSION['cart'], $cartItem);
+            $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
+        }
     }
 
     $view = new Template();

@@ -83,7 +83,13 @@
                 <h3>Tax(10%): ${{@tax}}</h3>
 
                 <div>
-                    <button class="btn btn-info waves-effect float-right" id="confirmOrderBtn">Confirm Shipping</button>
+                    <button class="btn btn-info waves-effect float-right" id="confirmOrderBtn">Go To Shipping</button>
+                </div>
+                <div>
+                    <form action="search" method="post">
+                        <input hidden type="text" name="cartDelete" value="delete">
+                        <button type="submit" class="btn btn-danger waves-effect float-right">Delete My Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
