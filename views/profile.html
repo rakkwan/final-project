@@ -79,9 +79,72 @@
                 <!-- Text -->
                 <p class="card-text">Track, return, or buy again</p>
                 <hr>
-                <table class="table">
-                    <thead></thead>
-                </table>
+                <repeat group="{{@orders}}" key="{{@key}}" value="{{@value}}">
+                    <div class="border rounded">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Order Number: {{@value['order_id']}}</h5>
+                                <hr>
+                                <p>Address: {{@value['address']}}</p>
+                                <p>Shipping: {{@value['shipping']}}</p>
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <td>Picture</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <repeat group="{{explode(', ',@value['images'])}}" value="{{@image}}">
+                                                <tr>
+                                                    <td><img src="{{@image}}" alt="picture"></td>
+                                                </tr>
+                                            </repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <repeat group="{{explode(', ',@value['description'])}}" value="{{@description}}">
+                                                <tr>
+                                                    <td style="padding-bottom: 234px">{{@description}}</td>
+                                                </tr>
+                                            </repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <td>Price</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <repeat group="{{explode(', ',@value['product'])}}" value="{{@product}}">
+                                                <tr>
+                                                    <td style="padding-bottom: 234px">${{@product}}</td>
+                                                </tr>
+                                            </repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </repeat>
+
 
             </div>
             <!-- Card content -->

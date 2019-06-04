@@ -9,5 +9,5 @@ $db->insertOrder($_POST['userID'], $_POST['costString'], $_POST['shipping'],
 
 echo '<p>Thank you for ordering with us!</p>';
 echo '<p>Order being shipped to: '.$_POST['address'].'</p>';
-echo '<p>The total cost is: '.$_POST['totalCost'].'</p>';
+echo '<p>The total cost is: $'.$_POST['totalCost'].'</p>';
 echo '<p>You bought: '.$_POST['itemString'].'</p>';

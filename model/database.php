@@ -154,6 +154,16 @@ class Database
         $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
         $statement->execute();
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+
         return $rows;
+    }
+
+    function getAddress($userID)
+    {
+        $sql = "SELECT address FROM users WHERE user_id = :user_id";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }

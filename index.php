@@ -128,11 +128,16 @@ $f3->route('GET|POST /thankyou', function($f3)
 
 $f3->route('GET|POST /cart', function ($f3)
 {
+    global $db;
+    $address = $db->getAddress($_SESSION['userID']);
+    $f3->set('userAddress', $address['address']);
+
     $f3->set('cart', $_SESSION['cart']);
     $cartTotal = 0;
     $priceString = '';
     $pictureString = '';
     $itemString = '';
+
     foreach ($_SESSION['cart'] as $item)
     {
         $cartTotal += $item->getPrice();
@@ -140,13 +145,14 @@ $f3->route('GET|POST /cart', function ($f3)
         $pictureString = $pictureString.$item->getImage().', ';
         $itemString = $itemString.$item->getName().', ';
     }
+
     $f3->set('cartTotal', $cartTotal);
     $tax = number_format($cartTotal*0.1, 2, '.', '');
     $f3->set('tax', $tax);
 
-    $f3->set('priceString', $priceString);
-    $f3->set('pictureString', $pictureString);
-    $f3->set('itemString', $itemString);
+    $f3->set('priceString', trim($priceString, ', '));
+    $f3->set('pictureString', trim($pictureString, ', '));
+    $f3->set('itemString', trim($itemString, ', '));
     //echo 'Pictures: '.$pictureString;
     //echo 'Prices: '.$priceString;
     //echo 'Items: '.$itemString;
