@@ -105,8 +105,10 @@ $f3->route('GET|POST /profile', function($f3)
     }
 
     $users = $db->getUsers($_SESSION['email']);
+    $orders = $db->getOrders($_SESSION['userID']);
 
     $f3->set('users', $users);
+    $f3->set('orders', $orders);
 
     $template = new Template();
     echo $template->render('views/profile.html');

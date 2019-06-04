@@ -144,4 +144,16 @@ class Database
 
         $statement->execute();
     }
+
+    function getOrders($userID)
+    {
+        $sql = "SELECT * FROM orders WHERE user_id = :user_id";
+
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
+        $statement->execute();
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
 }
