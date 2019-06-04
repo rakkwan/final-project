@@ -147,7 +147,7 @@ class Database
 
     function getOrders($userID)
     {
-        $sql = "SELECT * FROM orders WHERE user_id = :user_id";
+        $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY order_id ASC";
 
         $statement = $this->_dbh->prepare($sql);
 
