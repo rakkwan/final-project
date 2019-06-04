@@ -53,13 +53,16 @@
 </nav>
 <!-- Navbar -->
 
-<check if="{{!empty(@errors)}}">
-    <div class="alert alert-danger">
-        <repeat group=" {{ @errors }}" key="{{ @key }}" value="{{ @error}}">
-            <h4>Error: {{ @error }}</h4>
-        </repeat>
-    </div>
-</check>
+    <check if="{{!empty(@errors)}}">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <repeat group=" {{ @errors }}" key="{{ @key }}" value="{{ @error}}">
+                <h4><strong>Error:</strong> {{ @error }}</h4>
+            </repeat>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </check>
 
 <div class="jumbotron">
     <div class="container white">
