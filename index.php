@@ -5,9 +5,17 @@ require_once('vendor/autoload.php');
 
 session_start();
 
+/*
+ * Name: Maxwell Lee and Jittima Goodrich
+ * Date: 6/4/2019
+ * File: index.php use for routing and store session data
+ */
+
 //TUrn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+require_once ('model/validation.php');
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -29,13 +37,16 @@ $f3->route('GET|POST /register', function($f3)
 {
     if(!empty($_POST))
     {
-        $user = new User($_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['email'], $_POST['pass']);
-        $_SESSION['email'] = $_POST['email'];
-        global $db;
-        $db->register($user);
-        $_SESSION['userID'] = $f3->get('userID');
+        if (validForm())
+        {
+            $user = new User($_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['email'], $_POST['pass']);
+            $_SESSION['email'] = $_POST['email'];
+            global $db;
+            $db->register($user);
+            $_SESSION['userID'] = $f3->get('userID');
 
-        $f3->reroute('/thankyou');
+            $f3->reroute('/thankyou');
+        }
     }
 
     $view = new Template();
