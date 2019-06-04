@@ -95,6 +95,15 @@ $f3->route('GET|POST /profile', function($f3)
     //echo 'USERID: '.$_SESSION['userID'];
     global $db;
 
+    if(!empty($_POST))
+    {
+        if(isset($_POST['cartBought']))
+        {
+            $_SESSION['cartSize'] = 0;
+            $_SESSION['cart'] = [];
+        }
+    }
+
     $users = $db->getUsers($_SESSION['email']);
 
     $f3->set('users', $users);

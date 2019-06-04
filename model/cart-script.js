@@ -11,7 +11,8 @@ $("#confirmOrderBtn").on("click", function ()
 });
 
 $("#cartSubmit").on("click", function() {
-    //todo: Make this submit to the database
+    let totalCost = $('#costWShipping').val();
+
     let costString = $('#priceString').val();
     let pictureString = $('#pictureString').val();
     let itemString = $('#itemString').val();
@@ -23,7 +24,7 @@ $("#cartSubmit").on("click", function() {
     $.post(
         'model/cart-submit.php',
         {costString: costString, pictureString: pictureString, itemString: itemString,
-            address: address, shipping: shipping, userID: userID},
+            address: address, shipping: shipping, userID: userID, totalCost: totalCost},
         function(result) {
             $('#cartModal').modal('hide');
             $('#confirmModal').modal();
