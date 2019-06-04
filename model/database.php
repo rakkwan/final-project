@@ -30,6 +30,8 @@ CREATE TABLE orders
 );
 ALTER TABLE orders
 ADD description TEXT;
+
+ALTER TABLE orders ADD images TEXT;
  */
 
 $user = $_SERVER['USER'];
@@ -127,16 +129,18 @@ class Database
         $f3->set('userID', $lastID);
     }
 
-    function insertOrder($userID, $product, $shipping, $address)
+    function insertOrder($userID, $costs, $shipping, $address, $pictures, $itemNames)
     {
-        $sql = "INSERT INTO orders(product, shipping, address, user_id) 
-        VALUES (:product, :shipping, :address, :user_id)";
+        $sql = "INSERT INTO orders(product, shipping, address, user_id, description, images) 
+        VALUES (:product, :shipping, :address, :user_id, :description, :images)";
         $statement = $this->_dbh->prepare($sql);
 
-        $statement->bindParam(':product', $product, PDO::PARAM_STR);
+        $statement->bindParam(':product', $costs, PDO::PARAM_STR);
         $statement->bindParam(':shipping', $shipping, PDO::PARAM_STR);
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
         $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
+        $statement->bindParam(':description', $itemNames, PDO::PARAM_STR);
+        $statement->bindParam(':images', $pictures, PDO::PARAM_STR);
 
         $statement->execute();
     }

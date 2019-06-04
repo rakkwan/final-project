@@ -119,13 +119,26 @@ $f3->route('GET|POST /cart', function ($f3)
 {
     $f3->set('cart', $_SESSION['cart']);
     $cartTotal = 0;
+    $priceString = '';
+    $pictureString = '';
+    $itemString = '';
     foreach ($_SESSION['cart'] as $item)
     {
         $cartTotal += $item->getPrice();
+        $priceString = $priceString.$item->getPrice().', ';
+        $pictureString = $pictureString.$item->getImage().', ';
+        $itemString = $itemString.$item->getName().', ';
     }
     $f3->set('cartTotal', $cartTotal);
     $tax = number_format($cartTotal*0.1, 2, '.', '');
     $f3->set('tax', $tax);
+
+    $f3->set('priceString', $priceString);
+    $f3->set('pictureString', $pictureString);
+    $f3->set('itemString', $itemString);
+    //echo 'Pictures: '.$pictureString;
+    //echo 'Prices: '.$priceString;
+    //echo 'Items: '.$itemString;
 
     $view = new Template();
     echo $view->render('views/cart.html');

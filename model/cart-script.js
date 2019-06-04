@@ -1,17 +1,29 @@
-$("#confirmOrderBtn").on("click", function () {
-    $('#cartModal').modal();
+$("#confirmOrderBtn").on("click", function ()
+{
+    if($('#userID').val() === '')
+    {
+        $('#error').html("<p class='alert alert-danger'>Please login to finish your order</p>")
+    }
+    else
+    {
+        $('#cartModal').modal();
+    }
 });
 
 $("#cartSubmit").on("click", function() {
     //todo: Make this submit to the database
-    let cost = $('#costWShipping').val();
+    let costString = $('#priceString').val();
+    let pictureString = $('#pictureString').val();
+    let itemString = $('#itemString').val();
+
     let address = $('#address').val();
     let shipping = $("input:radio[name='shipping']:checked").val();
     let userID = $('#userID').val();
 
     $.post(
         'model/cart-submit.php',
-        {cost: cost, address: address, shipping: shipping, userID: userID},
+        {costString: costString, pictureString: pictureString, itemString: itemString,
+            address: address, shipping: shipping, userID: userID},
         function(result) {
             $('#cartModal').modal('hide');
             $('#confirmModal').modal();
