@@ -39,7 +39,7 @@ function validForm()
     if (!validSamePass($f3->get('pass'), $f3->get('pass1')))
     {
         $isValid = false;
-        $f3->set("errors['pass1']", "Please re-enter your password");
+        $f3->set("errors['pass1']", "Password must be matched, Please re-enter your password");
     }
     return $isValid;
 }

@@ -37,6 +37,23 @@ $f3->route('GET|POST /register', function($f3)
 {
     if(!empty($_POST))
     {
+        // get data from form
+        $first = $_POST['fname'];
+        $last = $_POST['lname'];
+        $address = $_POST['address'];
+        $email = $_POST['email'];
+        $password = $_POST['pass'];
+        $password1 = $_POST['pass1'];
+
+        // add data to hive
+        $f3->set('fname', $first);
+        $f3->set('lname', $last);
+        $f3->set('address', $address);
+        $f3->set('email', $email);
+        $f3->set('pass', $password);
+        $f3->set('pass1', $password1);
+
+        // if data is valid
         if (validForm())
         {
             $user = new User($_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['email'], $_POST['pass']);
