@@ -21,15 +21,22 @@ $("#cartSubmit").on("click", function() {
     let shipping = $("input:radio[name='shipping']:checked").val();
     let userID = $('#userID').val();
 
-    $.post(
-        'model/cart-submit.php',
-        {costString: costString, pictureString: pictureString, itemString: itemString,
-            address: address, shipping: shipping, userID: userID, totalCost: totalCost},
-        function(result) {
-            $('#cartModal').modal('hide');
-            $('#confirmModal').modal();
-            $('#modal2').html(result);
-    });
+    if(address.length === 0)
+    {
+        $('#addressError').html('<p class="alert alert-danger">Please give an address</p>')
+    }
+    else
+    {
+        $.post(
+            'model/cart-submit.php',
+            {costString: costString, pictureString: pictureString, itemString: itemString,
+                address: address, shipping: shipping, userID: userID, totalCost: totalCost},
+            function(result) {
+                $('#cartModal').modal('hide');
+                $('#confirmModal').modal();
+                $('#modal2').html(result);
+            });
+    }
 });
 
 $("input:radio[name='shipping']").on('click', function() {
