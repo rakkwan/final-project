@@ -106,6 +106,10 @@ $f3->route('GET|POST /logout', function ($f3)
     $_SESSION = []; // Clear the variables.
     session_destroy(); // Destroy the session itself.
 
+    session_start();
+    $_SESSION['cart'] = [];
+    $_SESSION['cartSize'] = 0;
+
     $view = new Template();
     echo $view->render('views/logout.html');
 
