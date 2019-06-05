@@ -143,6 +143,10 @@ $f3->route('GET|POST /search', function ($f3)
 $f3->route('GET|POST /profile', function($f3)
 {
     //echo 'USERID: '.$_SESSION['userID'];
+    //$newAddress = $_POST['newaddress'];
+    //$f3->set('newaddress', $newAddress);
+
+
     global $db;
 
     if(!empty($_POST))
@@ -156,9 +160,11 @@ $f3->route('GET|POST /profile', function($f3)
 
     $users = $db->getUsers($_SESSION['email']);
     $orders = $db->getOrders($_SESSION['userID']);
+    //$address = $db->changeAddress($_SESSION['userID']);
 
     $f3->set('users', $users);
     $f3->set('orders', $orders);
+    //$f3->set('address', $address);
 
     $template = new Template();
     echo $template->render('views/profile.html');
@@ -174,7 +180,6 @@ $f3->route('GET|POST /thankyou', function($f3)
     $template = new Template();
     echo $template->render('views/thankyou.html');
 });
-
 
 $f3->route('GET|POST /cart', function ($f3)
 {
