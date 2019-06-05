@@ -66,11 +66,21 @@ function validPassword($password)
 // check to see that email address is valid
 function validEmail($email)
 {
-    return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
+    global $db;
+    $emailValid = $db->checkEmail($email);
+    if (empty($emailValid))
+    {
+        return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+    return false;
 }
 
 function validSamePass($pass, $pass1)
 {
-    return !empty($pass) == !empty($pass1);
+    if(!empty($pass) == !empty($pass1))
+    {
+        return $pass == $pass1;
+    }
+
 }
 

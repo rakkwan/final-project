@@ -103,6 +103,12 @@ $f3->route('GET|POST /loggin', function ($f3)
 // define a logout route
 $f3->route('GET|POST /logout', function ($f3)
 {
+    /*
+    if (empty($_SESSION['userID']))
+    {
+        $f3->reroute('/loggin');
+    }
+    */
     $_SESSION = []; // Clear the variables.
     session_destroy(); // Destroy the session itself.
 

@@ -177,4 +177,15 @@ class Database
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
         $statement->execute();
     }
+
+    function checkEmail($email)
+    {
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind param
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }
