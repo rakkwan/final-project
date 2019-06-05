@@ -160,6 +160,10 @@ $f3->route('GET|POST /profile', function($f3)
             $_SESSION['cartSize'] = 0;
             $_SESSION['cart'] = [];
         }
+        if(isset($_POST['newaddress']))
+        {
+            $db->changeAddress($_SESSION['userID'], $_POST['newaddress']);
+        }
     }
 
     $users = $db->getUsers($_SESSION['email']);

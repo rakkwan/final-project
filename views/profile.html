@@ -212,11 +212,12 @@
                 <p class="card-text">Your Address: {{ @users['address'] }}</p>
                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 
-                <label>New address:
-                    <input type="text" name="newaddress">
-                </label>
-                <button type="submit" class="btn-sm btn-outline-info waves-effect">add</button>
-
+                <form action="#" method="post">
+                    <label>New address:
+                        <input type="text" name="newaddress">
+                    </label>
+                    <button type="submit" class="btn-sm btn-outline-info waves-effect">add</button>
+                </form>
             </div>
             <!-- Card content -->
 

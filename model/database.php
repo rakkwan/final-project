@@ -167,14 +167,13 @@ class Database
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    function changeAddress($user)
+    function changeAddress($user, $address)
     {
         $sql = "UPDATE users SET address = :address WHERE user_id = :user_id";
         $statement = $this->_dbh->prepare($sql);
 
-        // assign value
-        $address = $user->getAddress();
         // bind param
+        $statement->bindParam(':user_id', $user, PDO::PARAM_STR);
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
         $statement->execute();
     }
