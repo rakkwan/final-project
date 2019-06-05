@@ -100,6 +100,17 @@ $f3->route('GET|POST /loggin', function ($f3)
     echo $view->render('views/loggin.html');
 });
 
+// define a logout route
+$f3->route('GET|POST /logout', function ($f3)
+{
+    $_SESSION = []; // Clear the variables.
+    session_destroy(); // Destroy the session itself.
+
+    $view = new Template();
+    echo $view->render('views/logout.html');
+
+});
+
 
 //define a search page route
 $f3->route('GET|POST /search', function ($f3)
