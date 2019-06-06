@@ -1,5 +1,11 @@
-<include href="views/includes/header.html"/>
+<!--
+    Authors: Jittima Goodrich and Max Lee
+    URL: (user).greenriverdev.com/328/final-project/login
 
+    Register page so that new users can be added to the database.
+-->
+
+<include href="views/includes/header.html"/>
 
 <title>Online Shopping</title>
 </head>
@@ -53,16 +59,17 @@
 </nav>
 <!-- Navbar -->
 
-    <check if="{{!empty(@errors)}}">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <repeat group=" {{ @errors }}" key="{{ @key }}" value="{{ @error}}">
-                <h4><strong>Error:</strong> {{ @error }}</h4>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </repeat>
-        </div>
-    </check>
+<!-- Displays any errors with the input from the user -->
+<check if="{{!empty(@errors)}}">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <repeat group=" {{ @errors }}" key="{{ @key }}" value="{{ @error}}">
+            <h4><strong>Error:</strong> {{ @error }}</h4>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </repeat>
+    </div>
+</check>
 
 <div class="jumbotron">
     <div class="container white">

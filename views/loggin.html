@@ -1,5 +1,11 @@
-<include href="views/includes/header.html"/>
+<!--
+    Authors: Jittima Goodrich and Max Lee
+    URL: (user).greenriverdev.com/328/final-project/login
 
+    Login page for existing users to login or new users to go to register
+-->
+
+<include href="views/includes/header.html"/>
 
 <title>Online Shopping</title>
 </head>
@@ -53,6 +59,7 @@
 </nav>
 <!-- Navbar -->
 
+<!-- Displays any errors with the user's input -->
 <check if="{{!empty(@errors)}}">
     <h1 class="alert alert-warning alert-dismissible fade show" role="alert">{{@errors}}</h1>
 </check>

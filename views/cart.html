@@ -1,3 +1,10 @@
+<!--
+    Authors: Max Lee
+    URL: (user).greenriverdev.com/328/final-project/cart
+
+    The cart page that displays the user's cart and then allows the user to pick shipping and finalize the order
+-->
+
 <include href="views/includes/header.html"/>
 
 
@@ -60,6 +67,7 @@
             <div class="col-sm-12">
                 <h1>Confirm your order</h1>
 
+                <!-- Where the cart is displayed -->
                 <table class="table">
                     <thead>
                     <tr>
@@ -102,7 +110,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal for picking address and shipping -->
 <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -139,6 +147,7 @@
                             Overnight Shipping: $20 (1) Business Day</label>
                     </div>
 
+                    <!-- Hidden inputs that store data for the JS interaction with the database -->
                     <input hidden id="totalCost" value="{{@cartTotal+@tax}}">
                     <input hidden id="costWShipping" value="{{@cartTotal+@tax}}">
                     <input hidden id="userID" value="{{$_SESSION['userID']}}">
@@ -159,7 +168,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal for order confirmation -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -175,6 +184,7 @@
 
             </div>
 
+            <!-- redirects the user to the profile page -->
             <div class="modal-footer">
                 <form action="profile" method="post">
                     <input hidden type="text" name="cartBought" value="bought">

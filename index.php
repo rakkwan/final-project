@@ -11,20 +11,23 @@ session_start();
  * File: index.php use for routing and store session data
  */
 
-//TUrn on error reporting
+//Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+//Get validation functions
 require_once ('model/validation.php');
 
 //Create an instance of the Base class
 $f3 = Base::instance();
 
+//Establish connection to database
 $db = new Database();
 
 //define a default route
 $f3->route('GET /', function()
 {
+    //If the cart is not created yet, then initialize it
     if(!isset($_SESSION['cart']))
     {
         $_SESSION['cart'] = [];
@@ -56,11 +59,11 @@ $f3->route('GET|POST /register', function($f3)
         $f3->set('pass', $password);
         $f3->set('pass1', $password1);
 
-        // if data is valid
+        // if data is valid...
         if (validForm())
         {
+            //create a new user and register them into the database
             $user = new User($_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['email'], $_POST['pass']);
-            $_SESSION['email'] = $_POST['email'];
             global $db;
             $db->register($user);
             $_SESSION['userID'] = $f3->get('userID');
@@ -73,29 +76,37 @@ $f3->route('GET|POST /register', function($f3)
     echo $view->render('views/register.html');
 });
 
-//define a loggin route
+//define a login route
 $f3->route('GET|POST /login', function ($f3)
 {
     if(!empty($_POST))
     {
+        //if user submitted data to the login section of the login page...
         if($_POST['redirect'] == "login")
         {
             global $db;
+
+            //try to login(checks if username and password are in the database
             $user = $db->login($_POST['username'], $_POST['password']);
+
+            //if a result is retrieved from the database...
             if(!empty($user['user_id']))
             {
+                //add the user's id to session and then go to the profile page
                 $_SESSION['userID'] = $f3->get('userID');
-                $_SESSION['email'] = $_POST['username'];
                 $f3->reroute('/profile');
             }
             $f3->set('errors', 'No matching user');
         }
+
+        //if the user is trying to register, then go to the register page
         if($_POST['redirect'] == "register")
         {
             $f3->reroute('/register');
 
         }
     }
+
     $view = new Template();
     echo $view->render('views/loggin.html');
 });
@@ -103,15 +114,16 @@ $f3->route('GET|POST /login', function ($f3)
 // define a logout route
 $f3->route('GET|POST /logout', function ($f3)
 {
-    /*
+    //if the user is not logged in, then go to login page
     if (empty($_SESSION['userID']))
     {
         $f3->reroute('/login');
     }
-    */
+
     $_SESSION = []; // Clear the variables.
     session_destroy(); // Destroy the session itself.
 
+    //restart the session and the cart variables
     session_start();
     $_SESSION['cart'] = [];
     $_SESSION['cartSize'] = 0;
@@ -125,12 +137,14 @@ $f3->route('GET|POST /logout', function ($f3)
 //define a search page route
 $f3->route('GET|POST /search', function ($f3)
 {
+    //get the product's info
     $image = $_POST['image'];
     $name = $_POST['name'];
     $price = $_POST['price'];
 
     if(!empty($_POST))
     {
+        //if the user tried to delete their cart, reset the variables
         if($_POST['cartDelete'] == 'delete')
         {
             $_SESSION['cartSize'] = 0;
@@ -138,6 +152,7 @@ $f3->route('GET|POST /search', function ($f3)
         }
         else
         {
+            //Add the product to the cart as a CartItem.
             $cartItem = new CartItem($image, $name, $price);
             array_push($_SESSION['cart'], $cartItem);
             $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
@@ -152,16 +167,19 @@ $f3->route('GET|POST /search', function ($f3)
 // define a profile route
 $f3->route('GET|POST /profile', function($f3)
 {
-    //echo 'USERID: '.$_SESSION['userID'];
     global $db;
 
+    //if the user is trying to change something...
     if(!empty($_POST))
     {
+        //if the user has come from the cart page and bought their cart, then reset the cart variables
         if(isset($_POST['cartBought']))
         {
             $_SESSION['cartSize'] = 0;
             $_SESSION['cart'] = [];
         }
+
+        //change the user's address
         if(isset($_POST['newaddress']))
         {
             if(validAddress($_POST['newaddress']))
@@ -174,6 +192,7 @@ $f3->route('GET|POST /profile', function($f3)
             }
         }
 
+        //change the user's email
         if(isset($_POST['newusername']))
         {
             if (validEmail($_POST['newusername']))
@@ -186,6 +205,7 @@ $f3->route('GET|POST /profile', function($f3)
             }
         }
 
+        //change the user's password
         if(isset($_POST['newpassword']))
         {
             if(validPassword($_POST['newpassword']))
@@ -199,24 +219,26 @@ $f3->route('GET|POST /profile', function($f3)
         }
     }
 
+    //retrieve the user's info and orders
     $users = $db->getUsers($_SESSION['userID']);
     $orders = $db->getOrders($_SESSION['userID']);
 
+    //set the user's info and orders into the hive
     $f3->set('users', $users);
     $f3->set('orders', $orders);
-    //$f3->set('address', $address);
 
     $template = new Template();
     echo $template->render('views/profile.html');
 });
 
-// define a default route
 $f3->route('GET|POST /thankyou', function($f3)
 {
-    //echo 'USERID: '.$_SESSION['userID'];
     global $db;
+
+    //retrieve the new user's info
     $user = $db->getUsers($_SESSION['userID']);
     $f3->set('user', $user);
+
     $template = new Template();
     echo $template->render('views/thankyou.html');
 });
@@ -248,9 +270,6 @@ $f3->route('GET|POST /cart', function ($f3)
     $f3->set('priceString', trim($priceString, ', '));
     $f3->set('pictureString', trim($pictureString, ', '));
     $f3->set('itemString', trim($itemString, ', '));
-    //echo 'Pictures: '.$pictureString;
-    //echo 'Prices: '.$priceString;
-    //echo 'Items: '.$itemString;
 
     $view = new Template();
     echo $view->render('views/cart.html');
