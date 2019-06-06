@@ -97,7 +97,7 @@ $f3->route('GET|POST /login', function ($f3)
         }
     }
     $view = new Template();
-    echo $view->render('views/login.html');
+    echo $view->render('views/loggin.html');
 });
 
 // define a logout route
