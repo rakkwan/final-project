@@ -188,4 +188,26 @@ class Database
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+
+    function changeUsername($user, $email)
+    {
+        $sql = "UPDATE users SET email = :email WHERE user_id = :user_id";
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind param
+        $statement->bindParam(':user_id', $user, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    function changePassword($user, $password)
+    {
+        $sql = "UPDATE users SET password = :password WHERE user_id = :user_id";
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind param
+        $statement->bindParam(':user_id', $user, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->execute();
+    }
 }

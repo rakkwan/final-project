@@ -153,10 +153,6 @@ $f3->route('GET|POST /search', function ($f3)
 $f3->route('GET|POST /profile', function($f3)
 {
     //echo 'USERID: '.$_SESSION['userID'];
-    //$newAddress = $_POST['newaddress'];
-    //$f3->set('newaddress', $newAddress);
-
-
     global $db;
 
     if(!empty($_POST))
@@ -170,11 +166,26 @@ $f3->route('GET|POST /profile', function($f3)
         {
             $db->changeAddress($_SESSION['userID'], $_POST['newaddress']);
         }
+
+        if(isset($_POST['newusername']))
+        {
+            if (validEmail($_POST['newusername']))
+            {
+                $db->changeUsername($_SESSION['userID'], $_POST['newusername']);
+            }
+        }
+
+        if(isset($_POST['newpassword']))
+        {
+            if(validPassword($_POST['newpassword']))
+            {
+                $db->changePassword($_SESSION['userID'], $_POST['newpassword']);
+            }
+        }
     }
 
     $users = $db->getUsers($_SESSION['email']);
     $orders = $db->getOrders($_SESSION['userID']);
-    //$address = $db->changeAddress($_SESSION['userID']);
 
     $f3->set('users', $users);
     $f3->set('orders', $orders);

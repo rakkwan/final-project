@@ -53,6 +53,16 @@
 </nav>
 <!-- Navbar -->
 
+<check if="{{!empty(@errors)}}">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <repeat group=" {{ @errors }}" key="{{ @key }}" value="{{ @error}}">
+            <h4><strong>Error:</strong> {{ @error }}</h4>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </repeat>
+    </div>
+</check>
 
 <div class="container white">
     <div class="text-center">
@@ -178,11 +188,25 @@
                 <p class="card-text">Edit login, name, and password</p>
                 <hr>
                 <p class="card-text">Your Name: {{ @users['fname'] }} {{ @users['lname'] }}</p>
-                <p class="card-text">Your Username: {{$_SESSION['email']}}</p>
-                <p class="card-text">Your Password:
-                    <button type="button" class="btn-sm btn-outline-info waves-effect">reset</button></p>
+                <p class="card-text">Your Username: {{ @users['email'] }}</p>
+                <p class="card-text">Your Password: {{ @users['password'] }}</p>
+
+                <form action="#" method="post">
+                    <label>New username:
+                        <input type="text" name="newusername">
+                    </label>
+                    <button type="submit" class="btn-sm btn-outline-info waves-effect">change</button>
+                </form>
+
+
+                <form action="#" method="post">
+                    <label>New password:
+                        <input type="text" name="newpassword">
+                    </label>
+                    <button type="submit" class="btn-sm btn-outline-info waves-effect">change</button>
+                </form>
+
                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <button type="button" class="btn-sm btn-outline-info waves-effect">edit</button>
 
             </div>
             <!-- Card content -->
