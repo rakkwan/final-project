@@ -79,6 +79,11 @@ $f3->route('GET|POST /register', function($f3)
 //define a login route
 $f3->route('GET|POST /login', function ($f3)
 {
+    if(!empty($_SESSION['userID']))
+    {
+        $f3->reroute('/profile');
+    }
+
     if(!empty($_POST))
     {
         //if user submitted data to the login section of the login page...
