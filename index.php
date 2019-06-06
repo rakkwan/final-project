@@ -220,6 +220,12 @@ $f3->route('GET|POST /profile', function($f3)
                 $f3->set('error', 'Invalid new password');
             }
         }
+
+        //delete an order
+        if(isset($_POST['orderID']))
+        {
+            $db->deleteOrder($_POST['orderID']);
+        }
     }
 
     //retrieve the user's info and orders

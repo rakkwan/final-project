@@ -213,6 +213,10 @@ class Database
 
     function deleteOrder($orderID)
     {
-        $sql = "DELETE * FROM orders WHERE order_id = :order_id";
+        $sql = "DELETE FROM orders WHERE order_id = :order_id";
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam(':order_id', $orderID, PDO::PARAM_STR);
+        $statement->execute();
     }
 }

@@ -166,6 +166,13 @@
                                         </table>
                                     </div>
                                 </div>
+
+                                <!-- Where we delete the order -->
+                                <form method="post">
+                                    <input hidden name="orderID" value="{{@value['order_id']}}">
+                                    <button class="btn btn-danger float-right">Delete This Order</button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
