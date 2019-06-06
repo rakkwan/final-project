@@ -152,10 +152,13 @@ $f3->route('GET|POST /search', function ($f3)
         }
         else
         {
-            //Add the product to the cart as a CartItem.
-            $cartItem = new CartItem($image, $name, $price);
-            array_push($_SESSION['cart'], $cartItem);
-            $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
+            if(!empty($_POST['name']))
+            {
+                //Add the product to the cart as a CartItem.
+                $cartItem = new CartItem($image, $name, $price);
+                array_push($_SESSION['cart'], $cartItem);
+                $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
+            }
         }
     }
 
