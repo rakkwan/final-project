@@ -64,6 +64,10 @@
     </div>
 </check>
 
+<check if="{{!empty(@error)}}">
+    <h1 class="alert alert-warning alert-dismissible fade show" role="alert">{{@error}}</h1>
+</check>
+
 <div class="container white">
     <div class="text-center">
         <h1>Your Account: {{ @users['fname'] }} {{ @users['lname'] }}</h1>

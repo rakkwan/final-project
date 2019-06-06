@@ -57,17 +57,17 @@ class Database
         }
     }
 
-    function getUsers($email)
+    function getUsers($user)
     {
         // 1. Define the query
-        $sql = 'SELECT fname, lname, address FROM users WHERE email=:email';
+        $sql = 'SELECT * FROM users WHERE user_id=:user_id';
 
         // 2 Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         // 3. Bind the parameters
         //$statement->bindParam(':address', $address, PDO::PARAM_STR);
-        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':user_id', $user, PDO::PARAM_STR);
 
         // 4. Execute the statement
         $statement->execute();

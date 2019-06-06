@@ -164,7 +164,14 @@ $f3->route('GET|POST /profile', function($f3)
         }
         if(isset($_POST['newaddress']))
         {
-            $db->changeAddress($_SESSION['userID'], $_POST['newaddress']);
+            if(validAddress($_POST['newaddress']))
+            {
+                $db->changeAddress($_SESSION['userID'], $_POST['newaddress']);
+            }
+            else
+            {
+                $f3->set('error', 'Invalid new address');
+            }
         }
 
         if(isset($_POST['newusername']))
@@ -172,6 +179,10 @@ $f3->route('GET|POST /profile', function($f3)
             if (validEmail($_POST['newusername']))
             {
                 $db->changeUsername($_SESSION['userID'], $_POST['newusername']);
+            }
+            else
+            {
+                $f3->set('error', 'Invalid new username/email');
             }
         }
 
@@ -181,10 +192,14 @@ $f3->route('GET|POST /profile', function($f3)
             {
                 $db->changePassword($_SESSION['userID'], $_POST['newpassword']);
             }
+            else
+            {
+                $f3->set('error', 'Invalid new password');
+            }
         }
     }
 
-    $users = $db->getUsers($_SESSION['email']);
+    $users = $db->getUsers($_SESSION['userID']);
     $orders = $db->getOrders($_SESSION['userID']);
 
     $f3->set('users', $users);
@@ -200,7 +215,7 @@ $f3->route('GET|POST /thankyou', function($f3)
 {
     //echo 'USERID: '.$_SESSION['userID'];
     global $db;
-    $user = $db->getUsers($_SESSION['email']);
+    $user = $db->getUsers($_SESSION['userID']);
     $f3->set('user', $user);
     $template = new Template();
     echo $template->render('views/thankyou.html');
