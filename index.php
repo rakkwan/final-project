@@ -24,16 +24,16 @@ $f3 = Base::instance();
 //Establish connection to database
 $db = new Database();
 
+//If the cart is not created yet, then initialize it
+if(!isset($_SESSION['cart']))
+{
+    $_SESSION['cart'] = [];
+    $_SESSION['cartSize'] = 0;
+}
+
 //define a default route
 $f3->route('GET /', function()
 {
-    //If the cart is not created yet, then initialize it
-    if(!isset($_SESSION['cart']))
-    {
-        $_SESSION['cart'] = [];
-        $_SESSION['cartSize'] = 0;
-    }
-
     $view = new Template();
     echo $view->render('views/home.html');
 });
