@@ -210,4 +210,9 @@ class Database
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
     }
+
+    function deleteOrder($orderID)
+    {
+        $sql = "DELETE * FROM orders WHERE order_id = :order_id";
+    }
 }
