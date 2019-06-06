@@ -74,7 +74,7 @@ $f3->route('GET|POST /register', function($f3)
 });
 
 //define a loggin route
-$f3->route('GET|POST /loggin', function ($f3)
+$f3->route('GET|POST /login', function ($f3)
 {
     if(!empty($_POST))
     {
@@ -97,7 +97,7 @@ $f3->route('GET|POST /loggin', function ($f3)
         }
     }
     $view = new Template();
-    echo $view->render('views/loggin.html');
+    echo $view->render('views/login.html');
 });
 
 // define a logout route
@@ -106,7 +106,7 @@ $f3->route('GET|POST /logout', function ($f3)
     /*
     if (empty($_SESSION['userID']))
     {
-        $f3->reroute('/loggin');
+        $f3->reroute('/login');
     }
     */
     $_SESSION = []; // Clear the variables.
