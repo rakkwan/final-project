@@ -1,3 +1,10 @@
+/**
+ * Script used on the cart page to handle modals and order submissions
+ * @author Max Lee
+ * @copyright 6/6/2019
+ */
+
+//When a user tries to place an order, if they aren't logged in then they cannot continue
 $("#confirmOrderBtn").on("click", function ()
 {
     if($('#userID').val() === '')
@@ -10,6 +17,7 @@ $("#confirmOrderBtn").on("click", function ()
     }
 });
 
+//attempts to submit the cart to the database
 $("#cartSubmit").on("click", function() {
     let totalCost = $('#costWShipping').val();
 
@@ -39,6 +47,7 @@ $("#cartSubmit").on("click", function() {
     }
 });
 
+//handles dynamically changing the price displayed based on shipping selected
 $("input:radio[name='shipping']").on('click', function() {
     let activeRadio = $("input:radio[name='shipping']:checked");
     let cost = $('#totalCost').val();

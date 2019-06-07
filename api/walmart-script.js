@@ -1,16 +1,14 @@
 /*
- * Name: Maxwell Lee, Jittima Goodrich
- * Date: 12/03/2018
+ * Name: Maxwell Lee
+ * Date: 6/6/2019
  * File: final-project.js
- * Desciption: site to play a slot machine and money from the slot machine page
- * links to a walmart shopping webpage
+ * Description: handles the search-page.html page and how it handles all output given from Walmart's API
  */
 
-// Onload call
-// window.onload = setForm;
-
+//displays all the products given from Walmart
 $("#btnSearch").on("click", setForm);
 
+//makes it so you can search by pressing enter
 $("#product").on("keydown", function(event) {
     var code;
 
@@ -27,6 +25,7 @@ $("#product").on("keydown", function(event) {
 var prices = [];
 var items = [];
 var images = [];
+//handles the product given and sends it to Walmart's API and then displays it on search-page.html
 function setForm()
 {
     if(document.readyState === "complete") {
@@ -81,7 +80,7 @@ function setForm()
             }
             $("outputTable").append("</tbody>");
 
-            // buy button section
+            // Makes the modal display the selected products info
             $(".buying").on("click", function () {
                 var index = $(this).attr("id").substring(3, 4);
 

@@ -1,6 +1,9 @@
 <?php
 
-// valid the personal form
+/**
+ * used to validate the register form
+ * @return bool if everything was valid or not
+ */
 function validForm()
 {
     global $f3;
@@ -45,25 +48,41 @@ function validForm()
 }
 
 
-// check to see if name is all alphabetic
+/**
+ * Checks if the name given was valid
+ * @param String $name the name given
+ * @return bool if the name was valid
+ */
 function validName($name)
 {
     return !empty($name) && ctype_alpha($name);
 }
 
-//check address can't be empty
+/**
+ * Checks if the address is empty
+ * @param String $address the address given
+ * @return bool if the address was valid
+ */
 function validAddress($address)
 {
     return !empty($address);
 }
 
-// check to see that password 7 characters
+/**
+ * Checks if password was valid
+ * @param String $password the password given
+ * @return bool if the password was 7 characters or longer
+ */
 function validPassword($password)
 {
     return !empty($password) && strlen($password) >= 7;
 }
 
-// check to see that email address is valid
+/**
+ * Checks if the email is valid
+ * @param String $email the email given
+ * @return bool if the email was valid ot not
+ */
 function validEmail($email)
 {
     global $db;
@@ -75,12 +94,18 @@ function validEmail($email)
     return false;
 }
 
+/**
+ * Checks if the passwords given match
+ * @param String $pass the first password
+ * @param String $pass1 the second password
+ * @return bool if the passwords match
+ */
 function validSamePass($pass, $pass1)
 {
     if(!empty($pass) == !empty($pass1))
     {
         return $pass == $pass1;
     }
-
+    return false;
 }
 
