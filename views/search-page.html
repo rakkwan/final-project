@@ -65,8 +65,8 @@
 <div class="jumbotron">
     <div class="container white">
         <h1>Walmart Shopping</h1>
-        <h2>Cart Size: {{$_SESSION['cartSize']}}</h2>
-        <check if="{{$_SESSION['cartSize'] > 0}}">
+        <h2>Cart Size: {{$_SESSION['user']->getSizeOfCart()}}</h2>
+        <check if="{{$_SESSION['user']->getSizeOfCart() > 0}}">
             <h3><a href="cart" class="orange-text font-weight-bolder">View Your Cart</a></h3>
         </check>
     </div>

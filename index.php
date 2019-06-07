@@ -25,15 +25,15 @@ $f3 = Base::instance();
 $db = new Database();
 
 //If the cart is not created yet, then initialize it
-if(!isset($_SESSION['cart']))
+if(!isset($_SESSION['user']))
 {
-    $_SESSION['cart'] = [];
-    $_SESSION['cartSize'] = 0;
+    $_SESSION['user'] = new Guest();
 }
 
 //define a default route
 $f3->route('GET /', function()
 {
+    echo $_SESSION['user']->getSizeOfCart();
     $view = new Template();
     echo $view->render('views/home.html');
 });
@@ -64,6 +64,8 @@ $f3->route('GET|POST /register', function($f3)
         {
             //create a new user and register them into the database
             $user = new User($_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['email'], $_POST['pass']);
+            $user->setCart($_SESSION['user']->getCart());
+            $_SESSION['user'] = $user;
             global $db;
             $db->register($user);
             $_SESSION['userID'] = $f3->get('userID');
@@ -130,8 +132,7 @@ $f3->route('GET|POST /logout', function ($f3)
 
     //restart the session and the cart variables
     session_start();
-    $_SESSION['cart'] = [];
-    $_SESSION['cartSize'] = 0;
+    $_SESSION['user'] = new Guest();
 
     $view = new Template();
     echo $view->render('views/logout.html');
@@ -152,8 +153,7 @@ $f3->route('GET|POST /search', function ($f3)
         //if the user tried to delete their cart, reset the variables
         if($_POST['cartDelete'] == 'delete')
         {
-            $_SESSION['cartSize'] = 0;
-            $_SESSION['cart'] = [];
+            $_SESSION['user']->deleteCart();
         }
         else
         {
@@ -161,8 +161,7 @@ $f3->route('GET|POST /search', function ($f3)
             {
                 //Add the product to the cart as a CartItem.
                 $cartItem = new CartItem($image, $name, $price);
-                array_push($_SESSION['cart'], $cartItem);
-                $_SESSION['cartSize'] = $_SESSION['cartSize']+1;
+                $_SESSION['user']->addItemToCart($cartItem);
             }
         }
     }
@@ -183,8 +182,7 @@ $f3->route('GET|POST /profile', function($f3)
         //if the user has come from the cart page and bought their cart, then reset the cart variables
         if(isset($_POST['cartBought']))
         {
-            $_SESSION['cartSize'] = 0;
-            $_SESSION['cart'] = [];
+            $_SESSION['user']->deleteCart();
         }
 
         //change the user's address
@@ -263,13 +261,13 @@ $f3->route('GET|POST /cart', function ($f3)
     $address = $db->getAddress($_SESSION['userID']);
     $f3->set('userAddress', $address['address']);
 
-    $f3->set('cart', $_SESSION['cart']);
+    $f3->set('cart', $_SESSION['user']->getCart());
     $cartTotal = 0;
     $priceString = '';
     $pictureString = '';
     $itemString = '';
 
-    foreach ($_SESSION['cart'] as $item)
+    foreach ($_SESSION['user']->getCart() as $item)
     {
         $cartTotal += $item->getPrice();
         $priceString = $priceString.$item->getPrice().', ';
