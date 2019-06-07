@@ -6,6 +6,11 @@
  * Time: 11:30 PM
  */
 
+/**
+ * Class User is a registered user in out system
+ * @author Jittima Goodrich
+ * @copyright 6/1/2019
+ */
 class User extends Guest
 {
     private $_fname;
@@ -16,11 +21,12 @@ class User extends Guest
 
     /**
      * User constructor.
-     * @param $_fname
-     * @param $_lname
-     * @param $_address
-     * @param $_email
-     * @param $_password
+     * @param String $_fname the first name of the user
+     * @param String $_lname the last name of the user
+     * @param String $_address the address of the user
+     * @param String $_email the email of the user
+     * @param String $_password the password of the user
+     * @return void
      */
     public function __construct($_fname, $_lname, $_address, $_email, $_password)
     {
@@ -32,7 +38,8 @@ class User extends Guest
     }
 
     /**
-     * @return mixed
+     * The getter for the first name
+     * @return String the first name of the user
      */
     public function getFname()
     {
@@ -40,7 +47,9 @@ class User extends Guest
     }
 
     /**
-     * @param mixed $fname
+     * The setter for the first name
+     * @param String $fname first name
+     * @return void
      */
     public function setFname($fname)
     {
@@ -48,7 +57,8 @@ class User extends Guest
     }
 
     /**
-     * @return mixed
+     * Gets the last name of the user
+     * @return String last name
      */
     public function getLname()
     {
@@ -56,7 +66,9 @@ class User extends Guest
     }
 
     /**
-     * @param mixed $lname
+     * Sets the last name for the user
+     * @param String $lname last name
+     * @return void
      */
     public function setLname($lname)
     {
@@ -64,7 +76,8 @@ class User extends Guest
     }
 
     /**
-     * @return mixed
+     * Gets the address of the user
+     * @return String address
      */
     public function getAddress()
     {
@@ -72,7 +85,9 @@ class User extends Guest
     }
 
     /**
-     * @param mixed $address
+     * Sets the address of the user
+     * @param String $address the address
+     * @return void
      */
     public function setAddress($address)
     {
@@ -80,7 +95,8 @@ class User extends Guest
     }
 
     /**
-     * @return mixed
+     * Gets the email of the user
+     * @return String email
      */
     public function getEmail()
     {
@@ -88,7 +104,9 @@ class User extends Guest
     }
 
     /**
-     * @param mixed $email
+     * Sets the email for the user
+     * @param String $email the email
+     * @return void
      */
     public function setEmail($email)
     {
@@ -96,7 +114,8 @@ class User extends Guest
     }
 
     /**
-     * @return mixed
+     * Gets the password of the user
+     * @return String the password
      */
     public function getPassword()
     {
@@ -104,7 +123,9 @@ class User extends Guest
     }
 
     /**
-     * @param mixed $password
+     * Sets the password for the user
+     * @param String $password the password
+     * @return void
      */
     public function setPassword($password)
     {

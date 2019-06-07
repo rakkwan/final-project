@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class CartItem
+ * Class CartItem Represents an item that gets put into an online cart
  * @author Max Lee
  * @copyright 5/18/19
  */
@@ -11,9 +11,10 @@ class CartItem
 
     /**
      * CartItem constructor.
-     * @param $_image
-     * @param $_name
-     * @param $_price
+     * @param String $_image the url to the picture
+     * @param String $_name name of the product in the cart
+     * @param String $_price price of the product
+     * @return void
      */
     public function __construct($_image, $_name, $_price)
     {
@@ -23,7 +24,8 @@ class CartItem
     }
 
     /**
-     * @return mixed
+     * Gets the image of the item
+     * @return String image url
      */
     public function getImage()
     {
@@ -31,7 +33,9 @@ class CartItem
     }
 
     /**
-     * @param mixed $image
+     * Sets the image of the item
+     * @param String $image the image url
+     * @return void
      */
     public function setImage($image)
     {
@@ -39,7 +43,8 @@ class CartItem
     }
 
     /**
-     * @return mixed
+     * Gets the name of the product
+     * @return String the name
      */
     public function getName()
     {
@@ -47,7 +52,9 @@ class CartItem
     }
 
     /**
-     * @param mixed $name
+     * Sets the name of the product
+     * @param String $name the name
+     * @return void
      */
     public function setName($name)
     {
@@ -55,7 +62,8 @@ class CartItem
     }
 
     /**
-     * @return mixed
+     * Gets the price of the product
+     * @return int the price
      */
     public function getPrice()
     {
@@ -63,7 +71,9 @@ class CartItem
     }
 
     /**
-     * @param mixed $price
+     * Sets the price of the product
+     * @param int $price
+     * @return void
      */
     public function setPrice($price)
     {

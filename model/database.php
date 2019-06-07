@@ -37,15 +37,28 @@ ALTER TABLE orders ADD images TEXT;
 $user = $_SERVER['USER'];
 require "/home/$user/config-student.php";
 
+/**
+ * Class Database handles all database interaction
+ * @author Max Lee and Jittima Goodrich
+ * @copyright 6/6/2019
+ */
 class Database
 {
     private $_dbh;
 
+    /**
+     * Database constructor. connects to the database when made
+     * @return void
+     */
     function __construct()
     {
         $this->connect();
     }
 
+    /**
+     * Connects to the database
+     * @return void
+     */
     function connect()
     {
         try {
@@ -57,6 +70,11 @@ class Database
         }
     }
 
+    /**
+     * Gets the user's info
+     * @param int $user the user's ID
+     * @return mixed user's info in an array
+     */
     function getUsers($user)
     {
         // 1. Define the query
@@ -79,6 +97,12 @@ class Database
         return $result;
     }
 
+    /**
+     * Attempts to log the user in
+     * @param String $email the email given
+     * @param String $password the password given
+     * @return mixed the ID of the user just made
+     */
     function login($email, $password)
     {
         $sql = "SELECT user_id FROM users WHERE email = :email AND password = :password";
@@ -97,6 +121,11 @@ class Database
         return $row;
     }
 
+    /**
+     * Register's the user into the database
+     * @param User $user An User object
+     * @return void
+     */
     function register($user)
     {
         // prepare sql statement
@@ -129,6 +158,16 @@ class Database
         $f3->set('userID', $lastID);
     }
 
+    /**
+     * Inserts the order attached with the user's id
+     * @param int $userID the ID of the user placing the order
+     * @param String $costs the cost of all the items
+     * @param String $shipping the shipping type
+     * @param String $address the address
+     * @param String $pictures all the item's image's urls
+     * @param String $itemNames all the item's names
+     * @return void
+     */
     function insertOrder($userID, $costs, $shipping, $address, $pictures, $itemNames)
     {
         $sql = "INSERT INTO orders(product, shipping, address, user_id, description, images) 
@@ -145,6 +184,11 @@ class Database
         $statement->execute();
     }
 
+    /**
+     * Gets all orders place by the user
+     * @param int $userID the ID of the user
+     * @return array the orders made by the user
+     */
     function getOrders($userID)
     {
         $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY order_id ASC";
@@ -158,6 +202,11 @@ class Database
         return $rows;
     }
 
+    /**
+     * Gets the address of the user
+     * @param int $userID user id
+     * @return array an array that contains the address
+     */
     function getAddress($userID)
     {
         $sql = "SELECT address FROM users WHERE user_id = :user_id";
@@ -167,6 +216,12 @@ class Database
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Changes the user's address
+     * @param int $user user's id
+     * @param String $address new address
+     * @return void
+     */
     function changeAddress($user, $address)
     {
         $sql = "UPDATE users SET address = :address WHERE user_id = :user_id";
@@ -178,6 +233,11 @@ class Database
         $statement->execute();
     }
 
+    /**
+     * Checks if the email is already in the database
+     * @param String $email the given email
+     * @return array that contains the email if it was already in the database
+     */
     function checkEmail($email)
     {
         $sql = "SELECT * FROM users WHERE email = :email";
@@ -189,6 +249,12 @@ class Database
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Changes the user's email
+     * @param int $user the user's id
+     * @param String $email the new email
+     * @return void
+     */
     function changeUsername($user, $email)
     {
         $sql = "UPDATE users SET email = :email WHERE user_id = :user_id";
@@ -200,6 +266,12 @@ class Database
         $statement->execute();
     }
 
+    /**
+     * Changes the user's current password
+     * @param int $user the user's id
+     * @param String $password the new password
+     * @return void
+     */
     function changePassword($user, $password)
     {
         $sql = "UPDATE users SET password = :password WHERE user_id = :user_id";
@@ -211,6 +283,11 @@ class Database
         $statement->execute();
     }
 
+    /**
+     * Deletes the given order
+     * @param int $orderID the order's id
+     * @return void
+     */
     function deleteOrder($orderID)
     {
         $sql = "DELETE FROM orders WHERE order_id = :order_id";
