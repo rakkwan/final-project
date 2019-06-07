@@ -77,7 +77,7 @@ function setForm()
                 $("#outputTable").append('<tr><td><img src="' + data.items[i].mediumImage + '"></td><td>' + data.items[i].name +
                     '</td><td>$' + data.items[i].salePrice + '</td><td><button type="button" id="buy'+i+'" ' +
                     'name="cartItem" ' +
-                    'value="buy'+i+'" class="buying btn btn-primary">Add to Cart</button></td></tr>');
+                    'value="buy'+i+'" class="btn btn-info waves-effect">Add to Cart</button></td></tr>');
             }
             $("outputTable").append("</tbody>");
 
