@@ -33,7 +33,6 @@ if(!isset($_SESSION['user']))
 //define a default route
 $f3->route('GET /', function()
 {
-    echo $_SESSION['user']->getSizeOfCart();
     $view = new Template();
     echo $view->render('views/home.html');
 });
