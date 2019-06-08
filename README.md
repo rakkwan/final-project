@@ -17,6 +17,6 @@ and on critical portions
 - Validation: We have a validation file to check data.
 - (Extra) AJAX and jQuery: We use both to access and display
 data from Walmart's API and to handle the cart's page 
-functions and insertion into out database.
+functions and insertion into our database.
 - (Extra) API: We use Walmart's API to retrieve products 
-for out search page.
+for our search page.
