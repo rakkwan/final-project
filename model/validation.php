@@ -1,4 +1,10 @@
 <?php
+/**
+ * Validation file for user input
+ * @author Jittima Goodrich
+ * @copyright 6/9/2019
+ */
+
 
 /**
  * used to validate the register form
